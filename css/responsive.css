@@ -1,0 +1,2 @@
+@media(max-width:700px){.scan,.grid{display:none}header b{display:none}#camBox{width:130px}#camBox.big{width:90vw;top:300px}.btn.big{padding:18px 10px}.screen{padding:10px}}
+.fxlow .scan,.fxlow .grid{display:none}.fxlow *{box-shadow:none!important;text-shadow:none!important}
