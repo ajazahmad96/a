@@ -1,0 +1,16 @@
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;height:100%;background:#050403;overflow:hidden;color:#e8b860;font-family:Cinzel,"Trajan Pro",Georgia,serif}
+#c{position:fixed;inset:0;width:100%;height:100%;touch-action:none;display:block}
+header{position:fixed;top:calc(14px + env(safe-area-inset-top));left:0;right:0;text-align:center;pointer-events:none}
+h1{margin:0;font-size:clamp(15px,4.6vw,26px);letter-spacing:.32em;font-weight:500;text-shadow:0 0 18px #ff8a2a88}
+header p{margin:4px 0 0;font-size:9px;letter-spacing:.5em;opacity:.65}header small{display:block;margin-top:8px;font-size:9px;letter-spacing:.3em;color:#ff9a3c}
+#hint{position:fixed;left:0;right:0;bottom:30%;text-align:center;letter-spacing:.5em;font-size:11px;opacity:.55;pointer-events:none;transition:opacity .6s}
+#msg{position:fixed;left:12px;right:12px;top:22%;text-align:center;font-size:11px;letter-spacing:.15em;color:#ff9a3c}
+#conf{position:fixed;top:calc(16px + env(safe-area-inset-top));right:14px;font-size:9px;letter-spacing:.2em;display:none;align-items:center;gap:6px}
+#conf i{display:block;width:34px;height:4px;background:#ff9a3c33}#conf i:after{content:"";display:block;height:100%;width:var(--c,0%);background:#ffb040}
+#cam{position:fixed;left:12px;top:70px;width:84px;height:63px;object-fit:cover;transform:scaleX(-1);opacity:.5;border:1px solid #e8b86044;display:none}
+#prog{position:fixed;left:14px;bottom:calc(76px + env(safe-area-inset-bottom));width:34px;transform:rotate(-90deg);pointer-events:none}
+#prog circle{fill:none;stroke:#ffb040;stroke-width:2;stroke-dasharray:100.5;stroke-dashoffset:var(--p,100.5)}
+nav{position:fixed;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:0 8px}
+button{background:#0008;color:#e8b860;border:1px solid #e8b86055;padding:9px 10px;font:inherit;font-size:9px;letter-spacing:.2em;border-radius:2px}button:active{background:#ff8a2a44}
+#panel{position:fixed;left:10px;right:10px;bottom:calc(64px + env(safe-area-inset-bottom));max-width:360px;margin:auto;background:#0a0705ee;border:1px solid #e8b86044;padding:12px;display:grid;gap:8px;font-size:10px;letter-spacing:.15em}
+#panel[hidden]{display:none}label{display:grid;gap:4px}select,input{width:100%;accent-color:#ff9a3c;background:#000;color:#e8b860;border:1px solid #e8b86044}
