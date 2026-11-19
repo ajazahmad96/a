@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STARK Gesture Interface</title>
+<link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/hud.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/responsive.css"></head><body>
+<div class="grid"></div><div class="scan"></div>
+<section id="boot" class="screen on"><h1>STARK</h1><h2>GESTURE INTERFACE</h2><p class="tag">THE FUTURE IS TOUCHLESS.</p>
+<ul id="bootlog"></ul><button id="startBtn" class="btn gc">START SYSTEM (enables camera)</button><p id="bootErr" class="err"></p></section>
+<header id="top" hidden><b>STARK</b><nav id="nav"></nav><span id="camDot">● CAM OFF</span>
+<button id="lockBtn" class="btn sm">🔓 LOCK</button><button id="stopBtn" class="btn sm">STOP CAM</button><button id="panicBtn" class="btn sm red">⏸ PAUSE</button></header>
+<main id="app" hidden>
+<section id="dashboard" class="screen"><div class="hud"><div>GESTURE<br><b id="hGest">—</b></div><div>CONFIDENCE<br><b id="hConf">0%</b></div><div>FPS<br><b id="hFps">0</b></div><div>INFERENCE<br><b id="hInf">0 ms</b></div><div>HANDS<br><b id="hHands">0</b></div><div>STATE<br><b id="hState">IDLE</b></div></div>
+<p>Camera feed and landmarks appear in the large preview. Point with your index finger to move the cursor. Pinch to click.</p><button class="btn gc" data-go="panel">OPEN CONTROL PANEL</button> <button class="btn gc" data-go="calib">CALIBRATE</button></section>
+<section id="panel" class="screen"><h3>INTERACTIVE CONTROL PANEL</h3><div class="row"><button class="btn gc big" id="b1">ARC REACTOR: OFF</button><button class="btn gc big" id="b2">CLICKS: 0</button><button class="btn gc big" id="b3">NEXT PANEL ▶</button></div>
+<div class="stage" id="stage"><div class="orb drag" style="left:10%;top:20%">A</div><div class="orb drag" style="left:40%;top:50%">B</div><div class="orb drag" style="left:70%;top:25%">C</div><div class="zone" id="zone">DROP ZONE</div></div>
+<div class="scrollable" id="scr"><p>Scroll area: pinch and move your hand up or down here (or use a touch/mouse wheel).</p><p>Computer vision turns pixels into numbers. A neural network finds 21 landmarks on each hand. Our code measures distances between them to recognise gestures.</p><p>Pinch = thumb tip close to index tip. Point = only the index finger extended. Two fingers = next panel. Fist = configurable command. Open palm held = pause or resume.</p><p>Everything runs locally in your browser. No video is uploaded or stored.</p><p>End of scroll area.</p></div></section>
+<section id="present" class="screen"><div id="slide"></div><div class="row"><button class="btn gc" id="prev">◀ PREV</button><span id="sNum"></span><button class="btn gc" id="next">NEXT ▶</button><button class="btn gc" id="fs">FULLSCREEN</button></div><p class="tag">Demo: show two fingers or swipe your open hand left to advance.</p></section>
+<section id="calib" class="screen"><h3>CALIBRATION</h3><p id="cMsg">Press start, then point your finger at each corner of your comfortable reach area and hold still.</p><div class="cbar"><i id="cFill"></i></div><button class="btn gc" id="cStart">START CALIBRATION</button><button class="btn gc" id="cReset">RESET AREA</button></section>
+<section id="settings" class="screen"><h3>SETTINGS</h3><div class="form">
+<label>Camera<select id="camSel"></select></label><label>Resolution<select data-cfg="res" data-num><option>320</option><option>640</option><option>1280</option></select></label>
+<label>Sensitivity<input type="range" min=".5" max="2.5" step=".1" data-cfg="sens"></label><label>Smoothing<input type="range" min=".05" max=".9" step=".05" data-cfg="smooth"></label>
+<label>Dead zone<input type="range" min="0" max=".02" step=".001" data-cfg="dead"></label><label>Acceleration<input type="range" min="0" max="1" step=".05" data-cfg="accel"></label>
+<label>Hand<select data-cfg="hand"><option value="any">Any</option><option value="Right">Right</option><option value="Left">Left</option></select></label>
+<label>Fist command<select data-cfg="fist"><option value="pause">Pause/Resume</option><option value="next">Next panel</option><option value="prev">Previous panel</option><option value="none">None</option></select></label>
+<label>Two-finger command<select data-cfg="two"><option value="next">Next panel</option><option value="prev">Previous panel</option><option value="none">None</option></select></label>
+<label>Hold time ms<input type="range" min="50" max="500" step="10" data-cfg="hold" data-num></label><label>Cooldown ms<input type="range" min="300" max="3000" step="100" data-cfg="cool" data-num></label>
+<label>Sound<select data-cfg="sound" data-bool><option value="true">On</option><option value="false">Off</option></select></label>
+<label>Visual effects<select data-cfg="fx"><option>high</option><option>low</option></select></label></div></section>
+<section id="about" class="screen"><h3>SCIENCE MODE</h3><div class="scrollable tall"><h4>Computer Vision</h4><p>A camera frame is a grid of pixel numbers. Computer vision algorithms extract meaning from them.</p><h4>Machine Learning</h4><p>MediaPipe uses neural networks trained on many labelled hand images to locate a palm and then regress hand points.</p><h4>Hand Landmark Detection</h4><p>The model outputs 21 3D points per hand: wrist plus four joints on each finger.</p><h4>Gesture Recognition</h4><p>Our own rules compare landmark distances: a finger is extended if its tip is farther from the wrist than its middle joint. A pinch is thumb-to-index distance relative to hand size, with hysteresis. Gestures must stay stable for a hold time and respect a cooldown to avoid accidents.</p><h4>Human-Computer Interaction</h4><p>Smoothing, dead zones and calibration trade speed against stability, which is a core HCI problem. Mid-air input has no touch feedback, so we add sound and visual cues.</p></div></section>
+</main>
+<div id="camBox"><video id="video" playsinline muted></video><canvas id="overlay"></canvas></div>
+<div id="cursor"></div><div id="toast"></div>
+<script type="module" src="js/app.js"></script></body></html>
